@@ -9,11 +9,10 @@ create table library.author(
 create table library.book (
                               id serial,
                               book_name varchar(100) not null unique,
-                              book_author int not null,
+                              id_author int not null,
                               release_date timestamp default(current_timestamp),
                               length_pages int not null,
                               primary key(id),
-                              foreign key(book_author)
+                              foreign key(id_author)
                                   references library.author(id)
-
 );
