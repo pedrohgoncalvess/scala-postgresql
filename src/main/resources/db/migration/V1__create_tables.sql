@@ -10,7 +10,7 @@ create table library.book (
                               id serial,
                               book_name varchar(100) not null unique,
                               id_author int not null,
-                              release_date timestamp default(current_timestamp),
+                              release_date date default(current_date),
                               length_pages int not null,
                               primary key(id),
                               foreign key(id_author)
