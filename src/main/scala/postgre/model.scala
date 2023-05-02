@@ -12,7 +12,8 @@ case class Book(
            book_name:String,
            id_author:Long,
            release_date:LocalDate,
-           length_in_pages:Int
+           length_page:Int,
+           style:String
                )
 
 case class Author(
@@ -24,15 +25,16 @@ object SlickTables {
 
   import slick.jdbc.PostgresProfile.api._
 
-   class BookTable(tag: Tag) extends Table[Book](tag, Some("library") /*<-schema name*/,"book" /*<-table name*/) {
+   class BookTable(tag: Tag) extends Table[Book]/*subclass Table*/(tag, Some("library") /*<-schema name*/,"book" /*<-table name*/) {
      def id = column[Long]("id",O.PrimaryKey,O.AutoInc)
      def name = column[String]("book_name")
      def id_author = column[Long]("id_author")
      def release_date = column[LocalDate]("release_date")
-     def lengthInPage = column[Int]("length_in_pages")
+     def length_page = column[Int]("length_pages")
+     def style = column[String]("style")
 
-     //mapping function to the case class
-     override def * = (id,name,id_author,release_date, lengthInPage) <> (Book.tupled,Book.unapply)
+     // overriding '*' default method of Table subclass which maps table columns in scala classes
+     override def * = (id,name,id_author,release_date, length_page, style) <> (Book.tupled,Book.unapply)
    }
 
   //API entry point
