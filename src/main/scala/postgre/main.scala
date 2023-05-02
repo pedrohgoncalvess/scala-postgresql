@@ -1,14 +1,19 @@
 package postgre
 
-import postgre.main.insertBookTable
+import postgre.main.{insertAuthorTable, insertBookTable, readData}
 import postgre.Data._
+import DatabaseMigration.flyway
 
-object exec extends App{
-    DatabaseMigration.flyway.migrate()
+object migrations extends App{
+    flyway.migrate()
     println("Migration was successfully.")
 
-    insertBookTable(wiseManFear)
-    insertBookTable(nameOfTheWild)
+    listAuthors.foreach(author => insertAuthorTable(author))
+    listBooks.foreach(book => insertBookTable(book))
     println("Inserts was successfully.")
-
 }
+
+object readata extends App {
+    readData
+}
+
