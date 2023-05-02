@@ -2,28 +2,26 @@ package postgre
 
 import java.time.LocalDate
 
-
-/*books for insert in book table*/
+/*books and authors to insert into book and author table*/
 
 object Data {
 
   /*BOOKS*/
 
-  val nameOfTheWild = Book(
+  val nameOfTheWind = Book(
     id = 2L,
     book_name = "The name of the wild",
     id_author = 1L,
-    release_date = LocalDate.of(2012, 4, 15),
+    release_date = LocalDate.of(2007,3,27),
     length_page = 625,
     style = "Physical"
-
   )
 
   val wiseManFear = Book(
     id = 1L,
     book_name = "The wise man's fear",
     id_author = 1L,
-    release_date = LocalDate.of(2008, 4, 15),
+    release_date = LocalDate.of(2011,3,1),
     length_page = 936,
     style = "E-book"
   )
@@ -50,6 +48,6 @@ object Data {
   )
 
   val listAuthors = List(patrickRothfuss,georgeOrwell)
-  val listBooks = List(nameOfTheWild,wiseManFear,animalFarm)
+  val listBooks = List(nameOfTheWind,wiseManFear,animalFarm)
 
 }
