@@ -1,11 +1,8 @@
 package postgre
 
 import java.time.LocalDate
-import slick.lifted.Tag
-import slick.jdbc.PostgresProfile
-import slick.lifted.ProvenShape
-//import slick.jdbc.PostgresProfile.api._
-import play.api.libs.json._
+import java.sql.Date
+import slick.sql.SqlProfile.ColumnOption.SqlType
 
 case class Book(
            id:Long,
