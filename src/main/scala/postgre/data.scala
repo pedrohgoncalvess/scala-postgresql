@@ -2,11 +2,11 @@ package postgre
 
 import java.time.LocalDate
 
-/*books and authors to insert into book and author table*/
+/*books and authors class are imported from model.scala*/
 
 object Data {
 
-  /*BOOKS*/
+  /* BOOKS */
 
   val nameOfTheWind = Book(
     id = 2L,
@@ -36,7 +36,7 @@ object Data {
   )
 
 
-  /*AUTHORS */
+  /* AUTHORS */
   val patrickRothfuss = Author(
     id = 1L,
     author_name = "Patrick Rothfuss"

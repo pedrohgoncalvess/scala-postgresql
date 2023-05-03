@@ -2,9 +2,8 @@ package postgre
 
 import java.util.concurrent.Executors
 import scala.concurrent.{ExecutionContext, Future}
-import scala.util.{Failure, Success, Try}
-import scala.concurrent.duration._
-import scala.concurrent.Await
+import scala.util.{Failure, Success}
+
 
 object PrivateExecutionContext {
   val executor = Executors.newFixedThreadPool(4)
@@ -52,13 +51,15 @@ object main {
 
   def readData: Unit = {
 
+      println("Starting routine....")
     val resultFuture: Future[Seq[Book]] = connect.db.run(SlickTables.bookTable.result) /*select * from ___*/
-    resultFuture.map { books =>
-      println(s"Fetching: ${books.mkString(",")}")
-      books
-    }.recover({ case ex =>
-      println(s"Fetching failed. Reason: $ex")
-      Seq.empty[Book]
-    })
+
+    resultFuture.onComplete {
+      case Success(books) =>
+        //books.foreach(book => println(s"Book name: ${book.book_name}"))
+        println(books)
+      case Failure(ex) =>
+        println(s"Query failed. Reason: $ex")
+    }
   }
 }
